@@ -20,5 +20,4 @@ proguard/
 # Kotlin
 *.kts~
 
-# Generated files
-google-services.json (keep this tracked, exclude locally only)
+# Generated files (google-services.json is tracked)
