@@ -21,7 +21,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.material3.ExperimentalMaterial3Api
 import com.guidetrade.app.ui.screens.auth.AuthScreen
 import com.guidetrade.app.ui.screens.chat.ChatResultsScreen
 import com.guidetrade.app.ui.screens.chat.ChatScreen
