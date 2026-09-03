@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.launch
 import com.guidetrade.app.data.repository.AuthRepositoryImpl
 import com.guidetrade.app.domain.model.User
 import com.guidetrade.app.ui.navigation.GuideTradeAppNavHost
@@ -32,10 +34,9 @@ class MainActivity : ComponentActivity() {
                     val authRepository = remember { AuthRepositoryImpl() }
                     val user by authRepository.currentUser.collectAsState(initial = null)
 
-                    if (user != null) {
-                        GuideTradeAppNavHost(
-                            onSignOut = { authRepository.signOut() }
-                        )
+                val scope = rememberCoroutineScope()
+                if (user != null) {
+                    GuideTradeAppNavHost(onSignOut = { scope.launch { authRepository.signOut() } })
                     } else {
                         AuthScreen(onSignedIn = { })
                     }
