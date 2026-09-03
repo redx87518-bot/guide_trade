@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,6 +28,7 @@ import com.guidetrade.app.ui.screens.chat.ChatScreen
 import com.guidetrade.app.ui.screens.history.HistoryScreen
 import com.guidetrade.app.ui.screens.home.HomeScreen
 import com.guidetrade.app.ui.screens.reports.ReportsScreen
+import com.guidetrade.app.ui.screens.research.ResearchResultsScreen
 import com.guidetrade.app.ui.screens.research.ResearchScreen
 import com.guidetrade.app.ui.screens.settings.SettingsScreen
 import com.guidetrade.app.ui.screens.watchlist.WatchlistScreen
@@ -136,6 +138,13 @@ fun GuideTradeAppNavHost(
                         onNotificationsSettingsClicked = { navController.navigate(NavRoutes.NotificationsSettings.route) },
                         onHistoryClicked = { navController.navigate(NavRoutes.History.route) },
                         onReportsClicked = { navController.navigate(NavRoutes.Reports.route) }
+                    )
+                }
+                composable(NavRoutes.ResearchResults.route) { backStackEntry ->
+                    val noteId = backStackEntry.arguments?.getString("noteId") ?: return@composable
+                    ResearchResultsScreen(
+                        noteId = noteId,
+                        onNavigateBack = { navController.popBackStack() }
                     )
                 }
                 composable(NavRoutes.VoiceSettings.route) {
