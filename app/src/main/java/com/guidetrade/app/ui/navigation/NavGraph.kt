@@ -21,7 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.findStartDestination
+import androidx.compose.material3.ExperimentalMaterial3Api
 import com.guidetrade.app.ui.screens.auth.AuthScreen
 import com.guidetrade.app.ui.screens.chat.ChatResultsScreen
 import com.guidetrade.app.ui.screens.chat.ChatScreen
@@ -164,6 +164,7 @@ fun GuideTradeAppNavHost(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GuideTradeBottomBar(
     navController: NavHostController,
@@ -184,9 +185,7 @@ fun GuideTradeBottomBar(
                 onClick = {
                     if (currentRoute != item.route) {
                         navController.navigate(item.route) {
-                            popUpTo(navController.graph.findStartDestination()) {
-                                saveState = true
-                            }
+                            popUpTo(NavRoutes.Home.route)
                             launchSingleTop = true
                             restoreState = true
                         }

@@ -37,8 +37,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -126,20 +128,22 @@ fun MessageBubble(message: com.guidetrade.app.domain.model.ChatMessage) {
             .fillMaxWidth()
             .padding(vertical = 4.dp)
     ) {
-        Surface(
-            shape = RoundedCornerShape(
-                topStart = 16.dp,
-                topEnd = 16.dp,
-                bottomStart = if (message.isUser) 16.dp else 4.dp,
-                bottomEnd = if (message.isUser) 4.dp else 16.dp
-            ),
-            color = backgroundColor
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(
+                    topStart = 16.dp,
+                    topEnd = 16.dp,
+                    bottomStart = if (message.isUser) 16.dp else 4.dp,
+                    bottomEnd = if (message.isUser) 4.dp else 16.dp
+                ))
+                .background(backgroundColor)
+                .padding(12.dp, 8.dp)
         ) {
             Text(
                 text = message.text,
                 color = textColor,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(12.dp, 8.dp)
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }
