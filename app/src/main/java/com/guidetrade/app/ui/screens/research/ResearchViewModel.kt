@@ -9,6 +9,7 @@ import com.guidetrade.app.domain.repository.ResearchRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 
 data class ResearchUiState(
@@ -39,7 +40,7 @@ class ResearchViewModel(
             return
         }
         viewModelScope.launch {
-            val uid = authRepository.currentUser.value?.uid
+            val uid = authRepository.currentUser.firstOrNull()?.uid
             if (uid == null) {
                 _uiState.value = _uiState.value.copy(error = "Not authenticated")
                 return@launch

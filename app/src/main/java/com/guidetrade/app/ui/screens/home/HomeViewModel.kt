@@ -30,7 +30,7 @@ class HomeViewModel(
     private val getUserSettings: GetUserSettingsUseCase = GetUserSettingsUseCase(
         com.guidetrade.app.data.repository.UserRepositoryImpl()
     ),
-    private val signOut: SignOutUseCase = SignOutUseCase(
+    private val signOutUseCase: SignOutUseCase = SignOutUseCase(
         com.guidetrade.app.data.repository.AuthRepositoryImpl()
     )
 ) : ViewModel() {
@@ -66,7 +66,7 @@ class HomeViewModel(
 
     fun signOut() {
         viewModelScope.launch {
-            signOut()
+            signOutUseCase()
         }
     }
 }

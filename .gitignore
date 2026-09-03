@@ -1,0 +1,24 @@
+# Gradle
+.gradle/
+**/build/
+**/build/**
+*.apk
+*.ap_
+*.aab
+!*/*.apk
+
+# Local
+local.properties
+proguard/
+
+# IDE
+.idea/
+*.iml
+*.iws
+.DS_Store
+
+# Kotlin
+*.kts~
+
+# Generated files
+google-services.json (keep this tracked, exclude locally only)

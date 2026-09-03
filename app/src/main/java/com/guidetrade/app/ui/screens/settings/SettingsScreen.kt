@@ -14,22 +14,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExitToApp
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.Notifications
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Report
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -39,6 +31,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Report
+import androidx.compose.material.icons.filled.VolumeUp
 
 @Composable
 fun SettingsScreen(
@@ -58,7 +57,7 @@ fun SettingsScreen(
             modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background),
             contentAlignment = Alignment.Center
         ) {
-            androidx.compose.material3.CircularProgressIndicator()
+            CircularProgressIndicator()
         }
         return
     }
@@ -71,7 +70,7 @@ fun SettingsScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
-            SettingsSectionHeader(title = "Account")
+            SettingsSectionHeader("Account")
         }
         item {
             SettingItem(
@@ -82,7 +81,7 @@ fun SettingsScreen(
             )
         }
         item {
-            HorizontalDivider()
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp))
         }
         item {
             SettingItem(
@@ -93,7 +92,7 @@ fun SettingsScreen(
         }
 
         item {
-            SettingsSectionHeader(title = "Voice")
+            SettingsSectionHeader("Voice")
         }
         item {
             SettingSwitchItem(
@@ -120,7 +119,7 @@ fun SettingsScreen(
         }
 
         item {
-            SettingsSectionHeader(title = "Notifications")
+            SettingsSectionHeader("Notifications")
         }
         item {
             SettingSwitchItem(
@@ -139,7 +138,7 @@ fun SettingsScreen(
         }
 
         item {
-            SettingsSectionHeader(title = "Integrations")
+            SettingsSectionHeader("Integrations")
         }
         item {
             SettingItem(
@@ -159,7 +158,7 @@ fun SettingsScreen(
         }
 
         item {
-            SettingsSectionHeader(title = "History & Reports")
+            SettingsSectionHeader("History & Reports")
         }
         item {
             SettingItem(
@@ -177,7 +176,7 @@ fun SettingsScreen(
         }
 
         item {
-            SettingsSectionHeader(title = "Preferences")
+            SettingsSectionHeader("Preferences")
         }
         item {
             SettingItem(
@@ -228,30 +227,25 @@ fun SettingItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(if (subtitle != null) 64.dp else 56.dp)
-                .padding(horizontal = 16.dp),
+                .padding(12.dp, 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = if (subtitle != null) Arrangement.SpaceBetween else Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                icon?.let {
-                    Icon(imageVector = it, contentDescription = null)
-                }
-                Column {
+            icon?.let {
+                Icon(imageVector = it, contentDescription = null)
+            }
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                subtitle?.let {
                     Text(
-                        text = title,
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface
+                        text = it,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
-                    subtitle?.let {
-                        Text(
-                            text = it,
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
                 }
             }
         }
@@ -293,13 +287,4 @@ fun SettingSwitchItem(
             colors = SwitchDefaults.colors()
         )
     }
-    androidx.compose.material3.HorizontalDivider(
-        modifier = Modifier.padding(horizontal = 16.dp),
-        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f)
-    )
-}
-
-@Composable
-fun HorizontalDivider(modifier: Modifier = Modifier) {
-    androidx.compose.material3.HorizontalDivider(modifier = modifier)
 }

@@ -48,7 +48,7 @@ class AuthViewModel(
             val result = signIn(email, password)
             _uiState.value = _uiState.value.copy(
                 isLoading = false,
-                error = result.getOrNull()?.toString(),
+                error = result.exceptionOrNull()?.message,
                 isSignedIn = result.isSuccess
             )
         }
