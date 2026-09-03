@@ -37,6 +37,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Star
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GuideTradeAppNavHost(
     onSignOut: () -> Unit = {},

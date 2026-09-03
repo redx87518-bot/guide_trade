@@ -170,13 +170,12 @@ fun ResearchProgress(
         )
 
         LinearProgressIndicator(
-            progress = { progress },
+            progress = progress,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(8.dp),
             color = MaterialTheme.colorScheme.primary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
-            stroke = 4.dp
+            trackColor = MaterialTheme.colorScheme.surfaceVariant
         )
 
         Text(
