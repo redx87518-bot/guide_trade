@@ -10,15 +10,20 @@ service cloud.firestore {
     }
 
     match /chat_sessions/{sessionId} {
-      allow read, write: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
 
       match /messages/{messageId} {
-        allow read, list, create, update, delete: if request.auth != null;
+        allow read, list, create, update, delete: if request.auth != null
+          && get(/databases/$(database)/documents/chat_sessions/$(sessionId)).data.uid == request.auth.uid;
       }
     }
 
     match /research_notes/{noteId} {
-      allow read, write: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
     }
 
     match /user_settings/{userId} {
@@ -27,11 +32,13 @@ service cloud.firestore {
 
     match /notifications/{notificationId} {
       allow read, update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
-      allow create: if request.auth != null;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
     }
 
     match /saved_reports/{reportId} {
-      allow read, write: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow read: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null && resource.data.uid == request.auth.uid;
     }
   }
 }

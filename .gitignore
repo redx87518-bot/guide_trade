@@ -21,3 +21,4 @@ proguard/
 *.kts~
 
 # Generated files (google-services.json is tracked)
+node_modules/

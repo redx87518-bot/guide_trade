@@ -3,9 +3,7 @@ package com.guidetrade.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -13,14 +11,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
 import com.guidetrade.app.data.repository.AuthRepositoryImpl
-import com.guidetrade.app.domain.model.User
 import com.guidetrade.app.ui.navigation.GuideTradeAppNavHost
 import com.guidetrade.app.ui.screens.auth.AuthScreen
 import com.guidetrade.app.ui.theme.GuideTradeTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +30,11 @@ class MainActivity : ComponentActivity() {
                     val authRepository = remember { AuthRepositoryImpl() }
                     val user by authRepository.currentUser.collectAsState(initial = null)
 
-                val scope = rememberCoroutineScope()
-                if (user != null) {
-                    GuideTradeAppNavHost(onSignOut = { scope.launch { authRepository.signOut() } })
+                    val scope = rememberCoroutineScope()
+                    if (user != null) {
+                        GuideTradeAppNavHost(
+                            onSignOut = { scope.launch { authRepository.signOut() } }
+                        )
                     } else {
                         AuthScreen(onSignedIn = { })
                     }
