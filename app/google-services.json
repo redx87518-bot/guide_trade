@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "616280798488",
+    "project_id": "guide-trade",
+    "storage_bucket": "guide-trade.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:616280798488:android:eff4a7ed5677b82cbf1a6d",
+        "android_client_info": {
+          "package_name": "com.guidetrade.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlA2BpBMK5h4yngwXtt-bta9bJCm1p0Zc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
