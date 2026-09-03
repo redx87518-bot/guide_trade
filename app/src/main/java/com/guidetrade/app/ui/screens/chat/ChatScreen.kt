@@ -133,7 +133,7 @@ fun MessageBubble(message: com.guidetrade.app.domain.model.ChatMessage) {
                 bottomStart = if (message.isUser) 16.dp else 4.dp,
                 bottomEnd = if (message.isUser) 4.dp else 16.dp
             ),
-            containerColor = backgroundColor
+            color = backgroundColor
         ) {
             Text(
                 text = message.text,

@@ -64,7 +64,7 @@ fun ReportItemCard(note: com.guidetrade.app.domain.model.ResearchNote, onClick: 
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = note.title.ifEmpty { note.symbol },
+                text = note.companyName.ifEmpty { note.symbol },
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface
             )

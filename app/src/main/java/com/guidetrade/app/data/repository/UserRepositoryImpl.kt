@@ -5,6 +5,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.guidetrade.app.domain.model.User
 import com.guidetrade.app.domain.model.UserSettings
 import com.guidetrade.app.domain.repository.UserRepository
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
