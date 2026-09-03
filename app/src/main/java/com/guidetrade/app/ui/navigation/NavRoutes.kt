@@ -3,8 +3,9 @@ package com.guidetrade.app.ui.navigation
 sealed class NavRoutes(val route: String) {
     data object Auth : NavRoutes("auth")
     data object Home : NavRoutes("home")
-    data object ChatResults : NavRoutes("chat_results/{sessionId}") {
-        fun createRoute(sessionId: String) = "chat_results/$sessionId"
+    data object ChatResults : NavRoutes("chat_results")
+    data object Chat : NavRoutes("chat/{sessionId}") {
+        fun createRoute(sessionId: String) = "chat/$sessionId"
     }
     data object Research : NavRoutes("research")
     data object ResearchResults : NavRoutes("research_results/{noteId}") {
